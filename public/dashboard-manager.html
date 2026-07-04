@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSRMS - Manager Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fbf4d9;
+            color: #232323;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 260px;
+            padding: 2rem 1.4rem;
+            background: #1f1f1f;
+            color: #f3f0e7;
+            box-shadow: 4px 0 28px rgba(23, 23, 23, 0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .sidebar .brand {
+            font-size: 1.55rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #ffde59;
+            margin-bottom: 0.6rem;
+        }
+        .sidebar p {
+            margin: 0;
+            color: #d7c88c;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            flex: 1;
+        }
+        .sidebar nav a {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.95rem 1rem;
+            border-radius: 1rem;
+            color: #eadf9d;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .sidebar nav a.active,
+        .sidebar nav a:hover {
+            background: #ffde59;
+            color: #1f1f1f;
+        }
+        .sidebar small {
+            color: #d7c88c;
+            margin-top: 1rem;
+            display: block;
+        }
+        .logout-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+            padding: 0.85rem 1rem;
+            background: #ffde59;
+            color: #1f1f1f;
+            border-radius: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .content {
+            margin-left: 260px;
+            padding: 2rem 2rem 3rem;
+        }
+        .hero-card {
+            background: linear-gradient(135deg, #f7c948 0%, #f9dd7a 100%);
+            color: #1f1f1f;
+            border-radius: 1.25rem;
+            border: none;
+            box-shadow: 0 22px 50px rgba(86, 81, 74, 0.12);
+        }
+        .card {
+            border: none;
+            border-radius: 1.1rem;
+        }
+        .stat-card {
+            min-height: 140px;
+        }
+        .btn-primary {
+            background-color: #f4b400;
+            border-color: #f4b400;
+            color: #1f1f1f;
+        }
+        .btn-primary:hover {
+            background-color: #dea400;
+            border-color: #dea400;
+        }
+        .text-primary {
+            color: #b57300 !important;
+        }
+        .form-card {
+            background: #fff9e6;
+            border: 1px solid rgba(255, 166, 0, 0.2);
+        }
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .section-title h4 {
+            margin: 0;
+        }
+        @media (max-width: 992px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                box-shadow: none;
+                padding: 1.25rem;
+            }
+            .content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="brand">Crown Stores</div>
+        <p>Manager dashboard for branch category/product management, stock control and reporting.</p>
+        <nav>
+            <a href="#dashboardSection" class="active">Overview</a>
+            <a href="#inventorySection">Inventory</a>
+            <a href="#reportsSection">Reports</a>
+        </nav>
+        <small>Use the manager panel to add categories, add products, and export branch reports.</small>
+        <a href="/" class="logout-btn">Log Out</a>
+    </aside>
+    <main class="content">
+        <section id="dashboardSection">
+            <div class="card hero-card shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div>
+                            <h4 class="mb-1">Branch Operations Overview</h4>
+                            <p class="mb-0">Manage categories, products, procurement, stock adjustments, and branch performance.</p>
+                        </div>
+                        <span class="badge bg-white text-dark fs-6" style="padding:.65rem 1rem; border-radius:1rem;">Role: Branch Manager</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card stat-card shadow-sm border-0">
+                        <div class="card-body">
+                            <h6 class="text-muted">Branch Sales</h6>
+                            <h3 class="fw-bold text-primary">$18,240</h3>
+                            <small class="text-muted">Daily sales summary</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stat-card shadow-sm border-0">
+                        <div class="card-body">
+                            <h6 class="text-muted">Inventory Value</h6>
+                            <h3 class="fw-bold text-success">$54,800</h3>
+                            <small class="text-muted">Current stock value</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stat-card shadow-sm border-0">
+                        <div class="card-body">
+                            <h6 class="text-muted">Low Stock Items</h6>
+                            <h3 class="fw-bold text-warning">4</h3>
+                            <small class="text-muted">Reorder alerts pending</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stat-card shadow-sm border-0">
+                        <div class="card-body">
+                            <h6 class="text-muted">Pending Procurement</h6>
+                            <h3 class="fw-bold text-danger">3</h3>
+                            <small class="text-muted">Awaiting confirmation</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="inventorySection" class="mb-4">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card form-card shadow-sm p-4">
+                        <div class="section-title">
+                            <h4 class="mb-0">Add Category</h4>
+                        </div>
+                        <form id="categoryForm">
+                            <div class="mb-3">
+                                <label for="categoryName" class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="categoryName" placeholder="Example: Beverages" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="categoryDescription" class="form-label">Description</label>
+                                <textarea class="form-control" id="categoryDescription" rows="3" placeholder="Short description"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Category</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card form-card shadow-sm p-4">
+                        <div class="section-title">
+                            <h4 class="mb-0">Add Product</h4>
+                        </div>
+                        <form id="productForm">
+                            <div class="mb-3">
+                                <label for="productName" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" id="productName" placeholder="Example: Fresh Milk 1L" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="productCategory" class="form-label">Category</label>
+                                <input type="text" class="form-control" id="productCategory" placeholder="Example: Beverages" required>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="productPrice" class="form-label">Price</label>
+                                    <input type="number" class="form-control" id="productPrice" min="0" step="0.01" placeholder="0.00" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="productStock" class="form-label">Stock</label>
+                                    <input type="number" class="form-control" id="productStock" min="0" placeholder="0" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="productBarcode" class="form-label">Barcode</label>
+                                    <input type="text" class="form-control" id="productBarcode" placeholder="1005" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Add Product</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reportsSection">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card shadow-sm p-4">
+                        <h5 class="fw-bold text-primary mb-3">Branch Reports</h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Report</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Daily Sales</td><td><span class="badge bg-success">Ready</span></td></tr>
+                                    <tr><td>Inventory Summary</td><td><span class="badge bg-success">Ready</span></td></tr>
+                                    <tr><td>Procurement Report</td><td><span class="badge bg-warning">Pending</span></td></tr>
+                                    <tr><td>Cashier Balancing</td><td><span class="badge bg-success">Ready</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-sm p-4">
+                        <div class="section-title">
+                            <h5 class="fw-bold text-success mb-0">Generate Reports</h5>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button id="managerMakeReportBtn" class="btn btn-primary">Make Report</button>
+                            <button id="managerExportReportBtn" class="btn btn-outline-dark">Export</button>
+                        </div>
+                        <div id="managerReportOutput" class="mt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/reports.js"></script>
+    <script>
+        const categories = [];
+        const products = [];
+
+        document.getElementById('categoryForm').addEventListener('submit', event => {
+            event.preventDefault();
+            const name = document.getElementById('categoryName').value.trim();
+            const description = document.getElementById('categoryDescription').value.trim();
+            if (!name) return;
+            categories.push({ name, description });
+            document.getElementById('categoryForm').reset();
+            alert(`Category '${name}' added successfully.`);
+        });
+
+        document.getElementById('productForm').addEventListener('submit', event => {
+            event.preventDefault();
+            const name = document.getElementById('productName').value.trim();
+            const category = document.getElementById('productCategory').value.trim();
+            const price = parseFloat(document.getElementById('productPrice').value);
+            const stock = parseInt(document.getElementById('productStock').value, 10);
+            const barcode = document.getElementById('productBarcode').value.trim();
+            if (!name || !category || !barcode || Number.isNaN(price) || Number.isNaN(stock)) return;
+            products.push({ name, category, price, stock, barcode });
+            document.getElementById('productForm').reset();
+            alert(`Product '${name}' added successfully.`);
+        });
+    </script>
+</body>
+</html>
